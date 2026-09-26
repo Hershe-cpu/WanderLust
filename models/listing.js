@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const {Schema} = mongoose;
 const Review = require("./review");
 const User = require("./user");
+const { required } = require("joi");
 
 const listingSchema = new mongoose.Schema({
     title:{
@@ -47,7 +48,19 @@ const listingSchema = new mongoose.Schema({
         type:Schema.Types.ObjectId,
         ref:"User",
     },
+    geometry:{
+        type:{
+        type:String,
+        enum:['Point'],
+        required: true,
+        },
+        coordinates:{
+            type:[Number],
+            required:true,
+        }
 
+
+    }
 });
 
 
